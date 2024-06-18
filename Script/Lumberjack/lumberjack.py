@@ -63,14 +63,14 @@ def initial_key_actions():
     keyboard_controller.release(Key.left)
     time.sleep(0.1)
     keyboard_controller.press('w')
-    time.sleep(0.075)
+    time.sleep(0.085)
     keyboard_controller.release('w')
     time.sleep(0.1)
     keyboard_controller.press(Key.shift)
     keyboard_controller.release(Key.shift)
     time.sleep(0.1)
     keyboard_controller.press(Key.right)
-    time.sleep(0.65)
+    time.sleep(0.7205)
     keyboard_controller.release(Key.right)
 
 def on_press(key):
@@ -82,9 +82,6 @@ def on_press(key):
             mouse_controller.position = MOUSE_POSITION
             # Main loop for chopping and moving
         elif key.char == 'u':  # New action for 'h' key
-                keyboard_controller.press(Key.right)
-                time.sleep(0.075)
-                keyboard_controller.release(Key.right)
                 while True:
                     chopping()  # Call the chopping function
                     moving('d')
@@ -92,11 +89,11 @@ def on_press(key):
                     moving('a')
         elif key.char == 'j':  # New action for 'h' key
                 keyboard_controller.press(Key.right)
-                time.sleep(0.075)
+                time.sleep(0.03525)
                 keyboard_controller.release(Key.right)
         elif key.char == 'h':  # New action for 'h' key
                 keyboard_controller.press(Key.left)
-                time.sleep(0.075)
+                time.sleep(0.03525)
                 keyboard_controller.release(Key.left)
         elif key.char == 'g':  # New action for 'h' key
                 keyboard_controller.press('d')

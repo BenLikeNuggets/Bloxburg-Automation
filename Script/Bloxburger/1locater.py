@@ -7,20 +7,20 @@ mouse_controller = Controller()
 
 # Menu images - .png
 # Burgers
-Last_bun = "Last_bun"
-Onion = "Onion"
-Cheese = "Cheese" 
-Vegan_beef = "Vegan_beef"
-Normal_beef = "Normal_beef"
-Tomato = "Tomato"
-Lettuce = "Lettuce"
-First_bun = "First_bun"
+Last_bun = "Last_bun.png"
+Onion = "Onion.png"
+Cheese = "Cheese.png"
+Vegan_beef = "Vegan_beef.png"
+Normal_beef = "Normal_beef.png"
+Tomato = "Tomato.png"
+Lettuce = "Lettuce.png"
+First_bun = "First_bun.png"
 
 # Fries
-Fry_menu = "Fry_menu"
-Normal_fry = "Normal_fry"
-Round_fry = "Round_fry"
-Ring_fry = "Ring_fry"
+Fry_menu = "Fry_menu.png"
+Normal_fry = "Normal_fry.png"
+Round_fry = "Round_fry.png"
+Ring_fry = "Ring_fry.png"
 
 # Menu images - Centers
 Burger_centers = [None] * 8
@@ -31,7 +31,6 @@ Drink_centers = [None] * 4
 
 def locate_image(image):
     try:
-        image = f"{image}.png"
         image_location = pyautogui.locateOnScreen(image, confidence=0.8)
         if image_location:
             image_center = pyautogui.center(image_location)
