@@ -94,32 +94,32 @@ def locate_and_click(image, region=None):
     except pyautogui.ImageNotFoundException:
         print(f"Image {image} not found (exception caught).")
 
-def order_click_1(order, menu):
+# Function for just clicking part of the menu.
+def click_menu(menu):
+    pyautogui.moveTo(menu)
+    pyautogui.press('8')
+    time.sleep(0.5)
+    
+# Function for identifying the order, then pressing the corresponding menu once or twice.
+def click_order(order, menu, presses):
     try:
         order_location = pyautogui.locateOnScreen(order, confidence=0.95, region=Customer_region)
-        if order_location:
+        if order_location and presses == 1:
+            print(order)
             pyautogui.moveTo(menu)
             pyautogui.press('8')
+            time.sleep(0.2)
+        elif order_location and presses == 2:
+            print(order)
+            pyautogui.moveTo(menu)
+            pyautogui.press('8')
+            time.sleep(0.2)
+            pyautogui.leftClick()
             time.sleep(0.2)
         else:
             None
     except pyautogui.ImageNotFoundException:
         print(f"Image {menu} not found (exception caught).")
-
-def order_click_2(order, menu):
-    try:
-        order_location = pyautogui.locateOnScreen(order, confidence=0.95, region=Customer_region)
-        if order_location:
-            pyautogui.moveTo(menu)
-            pyautogui.press('8')
-            time.sleep(0.2)
-            pyautogui.leftClick()
-            time.sleep(1.0)
-        else:
-            print(f"Image {menu} not found on screen.")
-    except pyautogui.ImageNotFoundException:
-        print(f"Image {menu} not found (exception caught).")
-
 
 # The script will act differently depending on which key you press.
 def on_press(key):
@@ -202,29 +202,31 @@ def on_press(key):
             Medium = locate_image(Medium, region=Menu_region)
             Large = locate_image(Large, region=Menu_region)
 
-            time.sleep(2)
-
             locate_and_click(Confirm_button, region=Menu_region)
 
-            time.sleep(2.75)
+            time.sleep(3)
+
+        if key.char == 'h':
+            click_menu(Confirm_button)
 
             # ______Assigned customer region for this section of the script______
             Customer_region = (670, 369, 603, 97)
 
             # ______Clicking customers burger orders______
-            order_click_1(Cheese_1, Cheese)
-            order_click_2(Cheese_2, Cheese)
-            order_click_1(Lettuce_1, Lettuce)
-            order_click_1(Lettuce_2, Lettuce)
-            order_click_1(Normal_beef_1, Normal_beef)
-            order_click_2(Normal_beef_2, Normal_beef)
-            order_click_1(Onion_1, Onion)
-            order_click_2(Onion_2, Onion)
-            order_click_1(Tomato_1, Tomato)
-            order_click_2(Tomato_2, Tomato)
-            order_click_1(Vegan_beef_1, Vegan_beef)
-            order_click_2(Vegan_beef_2, Vegan_beef)
-
+            click_menu(First_bun)
+            click_order(Cheese_1, Cheese, 1)
+            click_order(Cheese_2, Cheese, 2)
+            click_order(Lettuce_1, Lettuce, 1)
+            click_order(Lettuce_2, Lettuce, 2)
+            click_order(Normal_beef_1, Normal_beef, 1)
+            click_order(Normal_beef_2, Normal_beef, 2)
+            click_order(Onion_1, Onion, 1)
+            click_order(Onion_2, Onion, 2)
+            click_order(Tomato_1, Tomato, 1)
+            click_order(Tomato_2, Tomato, 2)
+            click_order(Vegan_beef_1, Vegan_beef, 1)
+            click_order(Vegan_beef_2, Vegan_beef, 2)
+            click_menu(Last_bun)
 
             # ______Clicking customers fry orders______
 
@@ -233,10 +235,6 @@ def on_press(key):
 
 
             # ______Clicking confirmation button______
-
-        if key.char == 'h':
-            f=1
-
 
 
     except AttributeError:
